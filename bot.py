@@ -26,33 +26,33 @@ def webhook():
     chat_id = chat.get("id")
     text = message.get("text", "")
 
-if chat_id and text.startswith("/start"):
-    keyboard = {
-        "inline_keyboard": [
-            [
-                {"text": "🛒 상품 구매", "url": "https://t.me/clclxptmxm"},
-                {"text": "📋 상품 안내", "url": "https://t.me/clclxptmxm"}
-            ],
-            [
-                {"text": "💬 고객 상담", "url": "https://t.me/clclxptmxm"},
-                {"text": "📢 공지사항", "url": "https://t.me/clclxptmxm"}
-            ],
-            [
-                {"text": "❓ 이용 방법", "url": "https://t.me/clclxptmxm"},
-                {"text": "⭐ 후기", "url": "https://t.me/clclxptmxm"}
+    if chat_id and text.startswith("/start"):
+        keyboard = {
+            "inline_keyboard": [
+                [
+                    {"text": "🛒 상품 구매", "url": "https://t.me/clclxptmxm"},
+                    {"text": "📋 상품 안내", "url": "https://t.me/clclxptmxm"}
+                ],
+                [
+                    {"text": "💬 고객 상담", "url": "https://t.me/clclxptmxm"},
+                    {"text": "📢 공지사항", "url": "https://t.me/clclxptmxm"}
+                ],
+                [
+                    {"text": "❓ 이용 방법", "url": "https://t.me/clclxptmxm"},
+                    {"text": "⭐ 후기", "url": "https://t.me/clclxptmxm"}
+                ]
             ]
-        ]
-    }
+        }
 
-    requests.post(
-        f"{TELEGRAM_API}/sendMessage",
-        json={
-            "chat_id": chat_id,
-            "text": "안녕하세요.\n원하시는 메뉴를 선택해주세요.",
-            "reply_markup": keyboard
-        },
-        timeout=10
-    )
+        requests.post(
+            f"{TELEGRAM_API}/sendMessage",
+            json={
+                "chat_id": chat_id,
+                "text": "안녕하세요.\n원하시는 메뉴를 선택해주세요.",
+                "reply_markup": keyboard
+            },
+            timeout=10
+        )
 
     return "ok", 200
 
